@@ -19,7 +19,7 @@ public class Usuario {
 
     public void sancionar(){
         LocalDate fechaHastaSancion = LocalDate.now();
-        fechaHastaSancion = fechaAltaSancion.plusDays(10);
+        fechaHastaSancion = fechaHastaSancion.plusDays(10);
         this.fechaAltaSancion = fechaHastaSancion;
     }
 

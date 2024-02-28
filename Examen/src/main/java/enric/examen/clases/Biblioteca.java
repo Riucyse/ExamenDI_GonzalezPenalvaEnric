@@ -83,7 +83,7 @@ public class Biblioteca {
         }
     }
 
-    public boolean devolver(int idLibro, String dniUsuario){
+    public boolean devolver(int idLibro, String dniUsuario, LocalDate fechaDevuelta){
         List<Prestamo> prestamosRealizados = prestamos.stream().filter(Prestamo ->
             (Prestamo.getLibro().getIdLibro() == idLibro && Prestamo.getUsuario().getDni().equals(dniUsuario))
         ).toList();
@@ -92,19 +92,19 @@ public class Biblioteca {
         } else{
             Prestamo prestamo = prestamosRealizados.get(0);
             LocalDate fechaDeDevolucion = prestamo.getFechaPrevistaDevolucion();
-            if(fechaDeDevolucion.getYear() - LocalDate.EPOCH.getYear() < 0){
+            if(fechaDeDevolucion.getYear() - fechaDevuelta.getYear() < 0){
                 usuarios.stream().filter(Usuario -> Usuario.getDni().equals(dniUsuario)).findFirst().get().sancionar();
                 prestamos.stream().filter(Prestamo ->
                         (Prestamo.getLibro().getIdLibro() == idLibro && Prestamo.getUsuario().getDni().equals(dniUsuario))
                 ).findFirst().get().setFechaDevolucion(LocalDate.now());
                 return true;
-            } else if(fechaDeDevolucion.getMonthValue() - LocalDate.EPOCH.getMonthValue() < 0){
+            } else if(fechaDeDevolucion.getMonthValue() - fechaDevuelta.getMonthValue() < 0){
                 usuarios.stream().filter(Usuario -> Usuario.getDni().equals(dniUsuario)).findFirst().get().sancionar();
                 prestamos.stream().filter(Prestamo ->
                         (Prestamo.getLibro().getIdLibro() == idLibro && Prestamo.getUsuario().getDni().equals(dniUsuario))
                 ).findFirst().get().setFechaDevolucion(LocalDate.now());
                 return true;
-            } else if(fechaDeDevolucion.getDayOfMonth() - LocalDate.now().getDayOfMonth() < 0){
+            } else if(fechaDeDevolucion.getDayOfMonth() - fechaDevuelta.getDayOfMonth() < 0){
                 usuarios.stream().filter(Usuario -> Usuario.getDni().equals(dniUsuario)).findFirst().get().sancionar();
                 prestamos.stream().filter(Prestamo ->
                         (Prestamo.getLibro().getIdLibro() == idLibro && Prestamo.getUsuario().getDni().equals(dniUsuario))
