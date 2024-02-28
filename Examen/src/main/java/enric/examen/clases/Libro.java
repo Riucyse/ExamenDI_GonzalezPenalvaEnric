@@ -2,6 +2,12 @@ package enric.examen.clases;
 
 import java.time.LocalDate;
 
+/**
+ * Es la clase que representa un libro individual
+ *
+ * @author Enric Gonzalez
+ * @version 1.0
+ */
 public class Libro {
 
     private int idLibro;
@@ -11,15 +17,16 @@ public class Libro {
     private String tematica;
     private LocalDate fechaEdicion;
 
-    public Libro(){
-        this.idLibro = 0;
-        this.titulo = "";
-        this.isbn = "";
-        this.autor = "";
-        this.tematica = "";
-        this.fechaEdicion = LocalDate.now();
-    }
-
+    /**
+     * Constructor con parametros para rellenar todos los campos del libro
+     *
+     * @param nuevaId int. ID del nuevo libro en la biblioteca
+     * @param nuevoTitulo String. Titulo del nuevo libro
+     * @param nuevoIsbn String. ISBN del nuevo libro
+     * @param nuevoAutor String. Autor del nuevo libro
+     * @param nuevaTematica String. Tematica del nuevo libro
+     * @param nuevaFechaEdicion LocalDate. Fecha de edicion del nuevo libro
+     */
     public Libro(int nuevaId, String nuevoTitulo, String nuevoIsbn, String nuevoAutor, String nuevaTematica,
                  LocalDate nuevaFechaEdicion){
         this.idLibro = nuevaId;
@@ -30,51 +37,21 @@ public class Libro {
         this.fechaEdicion = nuevaFechaEdicion;
     }
 
+    /**
+     * Metodo para obtener la ID del Libro
+     *
+     * @return int con la ID del Libro
+     */
     public int getIdLibro() {
         return idLibro;
     }
 
-    public void setIdLibro(int idLibro) {
-        this.idLibro = idLibro;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
+    /**
+     * Metodo para obtener el ISBN del Libro
+     *
+     * @return String con el ISBN del Libro
+     */
     public String getIsbn() {
         return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getTematica() {
-        return tematica;
-    }
-
-    public void setTematica(String tematica) {
-        this.tematica = tematica;
-    }
-
-    public LocalDate getFechaEdicion() {
-        return fechaEdicion;
-    }
-
-    public void setFechaEdicion(LocalDate fechaEdicion) {
-        this.fechaEdicion = fechaEdicion;
     }
 }
